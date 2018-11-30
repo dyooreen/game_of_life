@@ -1,0 +1,128 @@
+<html>
+<head>
+    <title>Տեստ</title>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script src="/socket/socket.io.js"></script>
+    <script src="/p5/p5.min.js"></script>
+
+    <style>
+        body {
+            letter-spacing: 5px;
+        }
+
+        .Grass {
+            background-color: #4ebc0f;
+            color: #fff;
+        }
+
+        .GrassEater {
+            background-color: yellow;
+        }
+
+        .Predator {
+            background-color: #ad2929;
+            color: #fff;
+        }
+
+        .Devil {
+            background-color: black;
+            color: #fff;
+        }
+
+        .Grass:hover,
+        .GrassEater:hover,
+        .Predator:hover,
+        .Devil:hover {
+            background-color: #ccc;
+            color: black;
+        }
+
+        div {
+            margin: auto;
+            border: 1px solid black;
+            min-width: 500px;
+            text-align: center;
+            height: 600px;
+            overflow: auto;
+            max-width: 1100px;
+            margin-top: 8%;
+        }
+
+        div table {
+            width: 100%;
+            text-align: center;
+        }
+
+        div table th {
+            padding: 17px;
+            background-color: #ccc;
+        }
+
+        div table tr td {
+            padding: 14px;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <table>
+            <tr>
+                <th>Կերպար</th>
+                <th>Ծնվել է </th>
+                <th>Մահացել է</th>
+                <th>Framecount</th>
+            </tr>
+        </table>
+    </div>
+    <script>
+
+        var socket = io.connect('http://localhost:3000');
+        setInterval(function () {
+            socket.emit("get stats", []);
+        }, 10 * 1000);
+        socket.on("send stats", function (statistics) {
+            statistics = JSON.parse(statistics);
+            $('table').html("");
+            $('table').append(`<tr>
+                <th>Կերպար</th>
+                <th>Ծնվել է </th>
+                <th>Մահացել է</th>
+                <th>Framecount</th>
+            </tr>`)
+            for (var i in statistics) {
+                $('table').append(`
+                <tr>
+                <td class="Grass">${statistics[i].Grass[0]["name"]}</td>
+                <td class="Grass">${statistics[i].Grass[0]["mul"]}</td>
+                <td class="Grass">${statistics[i].Grass[0]["die"]}</td>
+                <td class="Grass">${statistics[i].timestamp}</td>
+                </tr>
+                <tr>
+                <td class="GrassEater">${statistics[i].GrassEater[0]["name"]}</td>
+                <td class="GrassEater">${statistics[i].GrassEater[0]["mul"]}</td>
+                <td class="GrassEater">${statistics[i].GrassEater[0]["die"]}</td>
+                <td class="GrassEater">${statistics[i].timestamp}</td>
+                </tr>
+                <tr> 
+                <td class="Predator">${statistics[i].Predator[0]["name"]}</td>
+                <td class="Predator">${statistics[i].Predator[0]["mul"]}</td>
+                <td class="Predator">${statistics[i].Predator[0]["die"]}</td>
+                <td class="Predator">${statistics[i].timestamp}</td>
+                </tr> 
+                <tr> 
+                <td class="Devil">${statistics[i].Devil[0]["name"]}</td>
+                <td class="Devil">${statistics[i].Devil[0]["mul"]}</td>
+                <td class="Devil">${statistics[i].Devil[0]["die"]}</td>
+                <td class="Devil">${statistics[i].timestamp}</td>
+                </tr> 
+                `)
+            }
+        });
+    </script>
+</body>
+
+</html>
