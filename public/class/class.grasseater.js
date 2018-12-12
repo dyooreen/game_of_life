@@ -3,7 +3,6 @@ class GrassEater extends LivingCreature {
         super(x, y)
         this.energy = 8;
         this.multiply = 0;
-        this.gender = floor(random(2));
     }
     getNewCoordinates() {
         this.directions = [
@@ -16,7 +15,6 @@ class GrassEater extends LivingCreature {
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
         ];
-
     }
     chooseCell(character) {
         this.getNewCoordinates();
@@ -44,7 +42,7 @@ class GrassEater extends LivingCreature {
         }
     }
     weather() {
-        if (weather == 4) this.move(100)
+        if (weather == 4) this.move(20)
         else if (weather == 3) this.move(5)
         else if (weather == 2) this.move(2)
         else this.move();
@@ -59,8 +57,9 @@ class GrassEater extends LivingCreature {
             this.y = newCell[1];
             matrix[this.y][this.x] = 2;
             this.energy--;
-            this.multiply = 0;
+            this.multiply  = 0;
             this.die();
+            this.mul();
         }
     }
     die() {
@@ -74,47 +73,15 @@ class GrassEater extends LivingCreature {
             statistics.GrassEater[0].die++;
         }
     }
-gender(){
-    if(this.gender === 0){
-        this.mul(0)
-    }else{
-        this.mul(1);
-    }
-}
-    mul(m) {
-        if(m === 0){
-            var newCell = random(this.chooseCell(0));
-            if (this.multiply >= 5 && newCell) {
-                grassArrLength++;
-                var newGrass = new GrassEater(newCell[0], newCell[1]);
-                GrassEaterArr.push(newGrass);
-                matrix[newCell[1]][newCell[0]] = 2;
-                this.multiply = 0;
-                statistics.GrassEater[0].mul++;
-            }
+    mul() {
+        var newCell = random(this.chooseCell(0));
+        if (this.energy >= 12 && newCell) {
+            grassArrLength++;
+            var newGrass = new GrassEater(newCell[0], newCell[1]);
+            GrassEaterArr.push(newGrass);
+            matrix[newCell[1]][newCell[0]] = 2;
+            this.energy = 0;
+            statistics.GrassEater[0].mul++;
         }
-        else{
-            if (this.energy >= 4) {
-                this.energy = 1;
-                setTimeout(() => {
-                    
-                    for(var i in GrassEaterArr){
-                        var mul = random(this.chooseCell(1));
-                        if(mul[0] == GrassEaterArr[i].y && mul[1] == GrassEaterArr[i].x){
-                            var newCell = random(this.chooseCell(0));
-                            if (newCell) {
-                                matrix[newCell[1]][newCell[0]] = 2;
-                                var gr = new GrassEater(newCell[0], newCell[1]);
-                                GrassEaterArr.push(gr);
-                                statistics.GrassEater[0].mul++;
-                            }
-                        }
-                    }
-                    
-                }, 4000)
-    
-            }
-        }
-        
     }
 }

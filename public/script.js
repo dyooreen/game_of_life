@@ -19,7 +19,6 @@ var statistics = {
     ]
 }
 var weather = 1;
-var varcolora = null;
 var resolution = 30;
 var matrix = matrix(resolution);
 var grassArr = [];
@@ -32,11 +31,9 @@ var DevilArr = [];
 var AngelArr = [];
 var canv = 800;
 var side = canv / resolution;
-
 function setup() {
-    colora();
     timer(5);
-    frameRate(20);
+    frameRate(30);
     createCanvas(canv, canv);
     background(0);
     createObjects();
@@ -44,32 +41,12 @@ function setup() {
 }
 
 function draw() {
-    if(frameCount % 100 == 0){
+    if(frameCount % 1000 == 0){
         statistics.timestamp = frameCount;
         socket.emit('send data', statistics);
     }
-    if (varcolora == 1) {
-        Drawcolora()
-    }
-    else {
-        DrawMatrix();
-    }
-
     ObjectFunctions();
-}
-const Drawcolora = () => {
-    for (var y in matrix) {
-        for (var x in matrix) {
-            if (matrix[y][x] == 0) {
-                fill('black');
-                rect(x * side, y * side, side, side);
-            }
-            else {
-                fill(random(255), random(255), random(255))
-                rect(x * side, y * side, side, side);
-            }
-        }
-    }
+    DrawMatrix();
 }
 const DrawMatrix = () => {
     for (var y in matrix) {
@@ -188,9 +165,4 @@ const timer = (weatherTime) => {
             case 4: id.text("Weather -- Winter"); break;
         }
     }, weatherTime * 1000);
-}
-const colora = () => {
-    setInterval(() => {
-        varcolora = Math.floor(Math.random() * 10)
-    }, 2000)
 }

@@ -25,3 +25,46 @@ a{
   color: black;
   text-decoration: none;
 }
+.Grass {
+  background-color: #4ebc0f;
+  color: #fff;
+}
+.GrassEater {
+  background-color: yellow;
+}
+.Predator {
+  background-color: #ad2929;
+  color: #fff;
+}
+.Devil {
+  background-color: black;
+  color: #fff;
+}
+.Grass:hover,
+.GrassEater:hover,
+.Predator:hover,
+.Devil:hover {
+  background-color: #ccc;
+  color: black;
+}
+div {
+  margin: auto;
+  min-width: 500px;
+  text-align: center;
+  height: 600px;
+  overflow: auto;
+  max-width: 1100px;
+  margin-top: 8%;
+}
+div table {
+  width: 100%;
+  text-align: center;
+}
+div table th {
+  padding: 17px;
+  background-color: #ccc;
+}
+div table tr td {
+  padding: 14px;
+  transition: 0.3s;
+}
