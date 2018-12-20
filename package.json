@@ -2,7 +2,7 @@
   "name": "game-of-life",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "server.js",
   "scripts": {
         "install": "cd GOL && npm i",
         "start": "cd GOL && npm server.js"
