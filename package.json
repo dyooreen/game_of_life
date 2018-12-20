@@ -4,7 +4,6 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-        "install": "npm i",
         "start": "cd public && npm start"
 
   },
