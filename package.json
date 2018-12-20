@@ -4,7 +4,7 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-        "start": "cd public && npm start"
+        "start": "cd public && npm script.js "
 
   },
   "author": "",
