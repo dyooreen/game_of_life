@@ -2,10 +2,10 @@
   "name": "game-of-life",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
         "install": "cd GOL && npm i",
-        "start": "cd GOL && npm server.js"
+        "start": "cd GOL && npm index.js"
   },
   "author": "",
   "license": "ISC",
