@@ -20,11 +20,10 @@ font-family: 'Lato', sans-serif;
 margin: 0px;
 }
 .golDiv{
-  width: 61%;
+  width: 100%;
   display: inline-block;
   position: absolute;
   text-align: center;
-  left: 4%;
   top: 700px;
 }
 .div{
@@ -33,4 +32,13 @@ margin: 0px;
 .golDiv a{
   text-decoration: none;
   color: black;
+}
+@media only screen and (min-width: 500px) {
+  .golDiv{
+    width: 100%;
+    display:block;
+    text-align: center;
+    position: relative;
+    top: 0px;
+  }
 }
