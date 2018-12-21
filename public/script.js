@@ -1,4 +1,4 @@
-socket = io.connect('http://localhost:3000');
+socket = io.connect('https://golbyaram.herokuapp.com/');
 var socket;
 var statistics = {
     "timestamp": "",

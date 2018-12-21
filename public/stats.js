@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost:3000');
+var socket = io.connect('https://golbyaram.herokuapp.com/');
         setInterval(function () {
             socket.emit("get stats", []);
         }, 10 * 1000);
