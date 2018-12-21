@@ -35,7 +35,7 @@ margin: 0px;
 }
 @media only screen and (min-width: 500px) {
   .golDiv{
-    width: 100%;
+    width: 120%;
     display:block;
     text-align: center;
     position: relative;
