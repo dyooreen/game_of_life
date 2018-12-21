@@ -1,6 +1,7 @@
+const port = process.env.PORT  ||3000;
 const express = require('express')
 const app = express()
-const server = app.listen(3000);
+const server = app.listen(port);
 const fs = require('fs');
 var statData = [];
 if (fs.existsSync("public/data.json")) {
