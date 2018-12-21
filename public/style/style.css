@@ -24,8 +24,8 @@ margin: 0px;
   display: inline-block;
   position: absolute;
   text-align: center;
-  left: 47%;
-
+  left: 4%;
+  top: 700px;
 }
 .div{
   display:none;
