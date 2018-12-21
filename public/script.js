@@ -29,7 +29,7 @@ var GodArr = [];
 var SatanArr = [];
 var DevilArr = [];
 var AngelArr = [];
-var canv = 800;
+var canv = screen.height - 100;
 var side = canv / resolution;
 function setup() {
     timer(5);
