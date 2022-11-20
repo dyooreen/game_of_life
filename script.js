@@ -1,6 +1,12 @@
 var weather = 1;
-var resolution = 30;
+var canvasSize = { height: window.innerHeight, width: window.innerWidth };
+var side = [50, 50];
+var resolution = [
+  Math.floor(canvasSize.height / side[0]),
+  Math.floor(canvasSize.width / side[1]),
+];
 var matrix = matrix(resolution);
+console.log(matrix, resolution, canvasSize);
 var grassArr = [];
 var grassArrLength = 0;
 var GrassEaterArr = [];
@@ -9,15 +15,16 @@ var GodArr = [];
 var SatanArr = [];
 var DevilArr = [];
 var AngelArr = [];
-var canv = screen.height - 100;
-var side = canv / resolution;
 function setup() {
   timer(5);
-  frameRate(30);
-  createCanvas(canv, canv);
-  background(0);
+  frameRate(10);
+  createCanvas(resolution[1] * side[1], resolution[0] * side[0]);
+  background("#002b36");
   createObjects();
-  noStroke();
+  pixelDensity(3);
+  stroke("#002b36");
+  strokeWeight(10);
+  // noStroke();
 }
 
 function draw() {
@@ -25,44 +32,45 @@ function draw() {
   DrawMatrix();
 }
 const DrawMatrix = () => {
-  for (var y in matrix) {
-    for (var x in matrix) {
+  background("#002b36");
+  for (var y = 0; y < matrix.length; y++) {
+    for (var x = 0; x < matrix[y].length; x++) {
       if (matrix[y][x] == 0) {
         fill("grey");
-        rect(x * side, y * side, side, side);
+        rect(x * side[0], y * side[1], side[0], side[1], 50);
       } else if (matrix[y][x] == 1) {
         if (weather == 1) fill("#4ebc0f");
         else if (weather == 2) fill("#63f210");
         else if (weather == 3) fill("#c1f10f");
         else if (weather == 4) fill("#00ffd0");
-        rect(x * side, y * side, side, side);
+        rect(x * side[0], y * side[1], side[0], side[1], 50);
       } else if (matrix[y][x] == 2) {
         fill("yellow");
-        rect(x * side, y * side, side, side);
+        rect(x * side[0], y * side[1], side[0], side[1], 50);
       } else if (matrix[y][x] == 3) {
         if (weather == 4) fill("#ad2929");
         else fill("red");
-        rect(x * side, y * side, side, side);
+        rect(x * side[0], y * side[1], side[0], side[1], 50);
       } else if (matrix[y][x] == 4) {
         fill(random(255), random(255), random(255));
-        rect(x * side, y * side, side, side);
+        rect(x * side[0], y * side[1], side[0], side[1], 50);
       } else if (matrix[y][x] == 5) {
         fill(random(255));
-        rect(x * side, y * side, side, side);
+        rect(x * side[0], y * side[1], side[0], side[1], 50);
       } else if (matrix[y][x] == 6) {
         fill("black");
-        rect(x * side, y * side, side, side);
+        rect(x * side[0], y * side[1], side[0], side[1], 50);
       } else if (matrix[y][x] == 7) {
         fill("white");
-        rect(x * side, y * side, side, side);
+        rect(x * side[0], y * side[1], side[0], side[1], 50);
       }
     }
   }
 };
 
 function createObjects() {
-  for (var y = 0; y < matrix.length; ++y) {
-    for (var x = 0; x < matrix[y].length; ++x) {
+  for (var y = 0; y < matrix.length; y++) {
+    for (var x = 0; x < matrix[y].length; x++) {
       if (matrix[y][x] == 1) {
         var gr = new Grass(x, y);
         grassArr.push(gr);
@@ -115,9 +123,9 @@ function ObjectFunctions() {
 
 function matrix(m) {
   var matrix = [];
-  for (var i = 0; i < m; i++) {
+  for (var i = 0; i < m[0]; i++) {
     matrix.push([]);
-    for (var j = 0; j < m; j++) {
+    for (var j = 0; j < m[1]; j++) {
       matrix[i][j] = Math.floor(Math.random() * 2);
     }
   }
