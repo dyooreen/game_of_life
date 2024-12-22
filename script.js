@@ -26,6 +26,7 @@ const timer = (weatherTime) => {
         break;
     }
   }, weatherTime * 1000);
+}
 console.log(matrix, resolution, canvasSize);
 var grassArr = [];
 var grassArrLength = 0;
@@ -166,5 +167,3 @@ function matrix(m) {
   ] = 6;
   return matrix;
 }
-
-};
