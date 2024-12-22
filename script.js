@@ -6,6 +6,26 @@ var resolution = [
   Math.floor(canvasSize.width / side[1]),
 ];
 var matrix = matrix(resolution);
+const timer = (weatherTime) => {
+  setInterval(() => {
+    let id = $("#weather");
+    weather++;
+    if (weather > 4) weather = 1;
+    switch (weather) {
+      case 1:
+        id.text("Weather -- Spring");
+        break;
+      case 2:
+        id.text("Weather -- Summer");
+        break;
+      case 3:
+        id.text("Weather -- Autumn");
+        break;
+      case 4:
+        id.text("Weather -- Winter");
+        break;
+    }
+  }, weatherTime * 1000);
 console.log(matrix, resolution, canvasSize);
 var grassArr = [];
 var grassArrLength = 0;
@@ -146,24 +166,5 @@ function matrix(m) {
   ] = 6;
   return matrix;
 }
-const timer = (weatherTime) => {
-  setInterval(() => {
-    let id = $("#weather");
-    weather++;
-    if (weather > 4) weather = 1;
-    switch (weather) {
-      case 1:
-        id.text("Weather -- Spring");
-        break;
-      case 2:
-        id.text("Weather -- Summer");
-        break;
-      case 3:
-        id.text("Weather -- Autumn");
-        break;
-      case 4:
-        id.text("Weather -- Winter");
-        break;
-    }
-  }, weatherTime * 1000);
+
 };
