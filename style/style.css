@@ -28,7 +28,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #002b36;
+  /* background-color: #002b36; */
   height: 100vh;
 }
 .golDiv {

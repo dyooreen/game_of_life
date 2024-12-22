@@ -1,33 +1,11 @@
 var weather = 1;
 var canvasSize = { height: window.innerHeight, width: window.innerWidth };
-var side = [50, 50];
+var side = [30,30];
 var resolution = [
   Math.floor(canvasSize.height / side[0]),
   Math.floor(canvasSize.width / side[1]),
 ];
 var matrix = matrix(resolution);
-const timer = (weatherTime) => {
-  setInterval(() => {
-    let id = $("#weather");
-    weather++;
-    if (weather > 4) weather = 1;
-    switch (weather) {
-      case 1:
-        id.text("Weather -- Spring");
-        break;
-      case 2:
-        id.text("Weather -- Summer");
-        break;
-      case 3:
-        id.text("Weather -- Autumn");
-        break;
-      case 4:
-        id.text("Weather -- Winter");
-        break;
-    }
-  }, weatherTime * 1000);
-}
-console.log(matrix, resolution, canvasSize);
 var grassArr = [];
 var grassArrLength = 0;
 var GrassEaterArr = [];
@@ -36,24 +14,24 @@ var GodArr = [];
 var SatanArr = [];
 var DevilArr = [];
 var AngelArr = [];
+const bgColor = location.hash.replace("#", "") || "red"
 function setup() {
-  timer(5);
+document.getElementsByTagName("body")[0].style.backgroundColor = bgColor
   frameRate(10);
   createCanvas(resolution[1] * side[1], resolution[0] * side[0]);
-  background("#002b36");
+  background(bgColor);
   createObjects();
   pixelDensity(3);
-  stroke("#002b36");
+  stroke(bgColor);
   strokeWeight(10);
-  // noStroke();
 }
 
 function draw() {
   ObjectFunctions();
   DrawMatrix();
 }
-const DrawMatrix = () => {
-  background("#002b36");
+function DrawMatrix  ()  {
+  background(bgColor);
   for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
       if (matrix[y][x] == 0) {
