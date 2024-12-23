@@ -1,6 +1,6 @@
 var weather = 1;
 var canvasSize = { height: window.innerHeight, width: window.innerWidth };
-var side = [30,30];
+var side = [30, 30];
 var resolution = [
   Math.floor(canvasSize.height / side[0]),
   Math.floor(canvasSize.width / side[1]),
@@ -16,7 +16,8 @@ var DevilArr = [];
 var AngelArr = [];
 const bgColor = location.hash.replace("#", "") || "red"
 function setup() {
-document.getElementsByTagName("body")[0].style.backgroundColor = bgColor
+  if (!bgColor) return
+  document.getElementsByTagName("body")[0].style.backgroundColor = bgColor
   frameRate(10);
   createCanvas(resolution[1] * side[1], resolution[0] * side[0]);
   background(bgColor);
@@ -30,7 +31,8 @@ function draw() {
   ObjectFunctions();
   DrawMatrix();
 }
-function DrawMatrix  ()  {
+function DrawMatrix() {
+  if (!bgColor) return
   background(bgColor);
   for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
