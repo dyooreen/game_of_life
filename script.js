@@ -14,7 +14,7 @@ var GodArr = [];
 var SatanArr = [];
 var DevilArr = [];
 var AngelArr = [];
-const bgColor = location.hash.replace("#", "") || "red"
+var bgColor = location.hash.replace("#", "") || "red"
 function setup() {
   if (!bgColor) return
   document.getElementsByTagName("body")[0].style.backgroundColor = bgColor
